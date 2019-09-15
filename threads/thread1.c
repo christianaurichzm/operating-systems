@@ -20,14 +20,14 @@ int main() {
         perror("Criacao de Thread falhou");
         exit(EXIT_FAILURE);
     }
-    printf("Esperando por thread finalizar...\n");
+    printf("Esperando thread finalizar...\n");
     res = pthread_join(a_thread, &thread_result);
     if (res != 0) {
         perror("Thread falhou no join");
         exit(EXIT_FAILURE);
     }
     printf("Thread joined, retornou %s\n", (char *)thread_result);
-    printf("Menssagem agora eh %s\n", message);
+    printf("Mensagem agora eh %s\n", message);
     exit(EXIT_SUCCESS);
 }
 
