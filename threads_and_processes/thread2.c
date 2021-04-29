@@ -1,6 +1,3 @@
-// Compilar com:
-// gcc -pthread thread2.c -o thread2
-
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -8,49 +5,59 @@
 
 void *thread_function(void *arg);
 int run_now = 1;
-char message[] = "Alo mundo!";
+char message[] = "Hello world!";
 
-int main() {
+int main()
+{
     int res;
     pthread_t a_thread;
     void *thread_result;
     int print_count1 = 0;
 
     res = pthread_create(&a_thread, NULL, thread_function, (void *)message);
-    if (res != 0) {
-        perror("Criacao de Thread falhou");
+    if (res != 0)
+    {
+        perror("Thread creation failed");
         exit(EXIT_FAILURE);
     }
 
-    while(print_count1++ < 20) {
-        if (run_now == 1) {
+    while (print_count1++ < 20)
+    {
+        if (run_now == 1)
+        {
             printf("1");
             run_now = 2;
         }
-        else {
+        else
+        {
             sleep(1);
         }
     }
 
-    printf("\nEsperando por thread finalizar...\n");
+    printf("\n Waiting for thread to finish...\n");
     res = pthread_join(a_thread, &thread_result);
-    if (res != 0) {
-        perror("Thread falhou no join");
+    if (res != 0)
+    {
+        perror("Thread failed to join");
         exit(EXIT_FAILURE);
     }
     printf("Thread joined\n");
     exit(EXIT_SUCCESS);
 }
 
-void *thread_function(void *arg) {
+void *thread_function(void *arg)
+{
     int print_count2 = 0;
 
-    while(print_count2++ < 20) {
-        if (run_now == 2) {
+    while (print_count2++ < 20)
+    {
+        if (run_now == 2)
+        {
             printf("2");
             run_now = 1;
         }
-        else {
+        else
+        {
             sleep(1);
         }
     }

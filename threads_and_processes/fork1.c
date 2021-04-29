@@ -9,25 +9,26 @@ int main()
     char *message;
     int n;
 
-    printf("Programa exemplo fork iniciou\n");
+    printf("Fork sample program started\n");
     pid = fork();
-    switch(pid) 
+    switch (pid)
     {
     case -1:
-        perror("fork falhou");
+        perror("Fork failed");
         exit(1);
     case 0:
-        message = "Este é o processo filho\n";
-        n = 3;
+        message = "This is the child process\n";
+        n = 5;
         break;
     default:
-        message = "Este é o processo pai\n";
-        n = 5;
+        message = "This is the parent process\n";
+        n = 3;
         break;
     }
 
-    for(; n > 0; n--) {
-        printf("%s",message);
+    for (; n > 0; n--)
+    {
+        printf("%s", message);
         sleep(1);
     }
     exit(0);
